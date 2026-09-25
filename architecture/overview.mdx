@@ -1,5 +1,5 @@
 ---
-title: "How RBOS Is Structured: A System Overview"
+title: "RBOS System Overview: Four-Layer Platform Architecture"
 sidebarTitle: "Overview"
 description: "Learn how RBOS organizes your enterprise data across four interconnected layers: Knowledge, Orchestration, Agents, and Governance."
 ---
@@ -47,7 +47,7 @@ When you add a document to RBOS, it immediately becomes part of your living know
     You upload, create, or sync a document into a collection. RBOS accepts files (PDF, DOCX, Markdown, and more), inline pages, structured records, and content pulled in from connected integrations like Google Drive or Confluence.
   </Step>
   <Step title="Indexing Runs Automatically">
-    The Knowledge Layer processes the document in the background. It builds a full-text index for keyword search and a semantic index (vector embedding) for meaning-based retrieval. Both become available within seconds of ingestion.
+    The Knowledge Layer processes the document in the background. It builds a full-text index for keyword search and a semantic index for meaning-based retrieval. Both become available within seconds of ingestion.
   </Step>
   <Step title="Workflows Are Evaluated">
     The Orchestration Layer checks whether any workflow triggers match the new document — for example, a trigger that fires when a new SOP is added to a specific collection, kicking off a review-and-approval process.
