@@ -1,0 +1,92 @@
+---
+title: "Using RBOS Audit Logs for Compliance and Review"
+sidebarTitle: "Audit Logs"
+description: "Access and export RBOS audit logs to track every action in your workspace — document edits, agent activity, member changes, and more."
+---
+
+RBOS records every significant action in an immutable audit log, giving you complete visibility into what happened, when, and by whom. Whether you're conducting a security review, investigating an incident, or satisfying a compliance requirement, the audit log is your authoritative record of workspace activity.
+
+## Accessing Audit Logs
+
+<Steps>
+  <Step title="Go to Workspace Settings">
+    Click your workspace name in the top-left corner and select **Workspace Settings**.
+  </Step>
+  <Step title="Open the Audit Logs panel">
+    Click **Audit Logs** in the left navigation panel. The log opens with the most recent events shown first.
+  </Step>
+  <Step title="Apply filters to narrow results">
+    Use the filter bar at the top of the log to refine the displayed events by date range, user, event type, or project. See [Filtering and Searching Logs](#filtering-and-searching-logs) for details on each filter option.
+  </Step>
+</Steps>
+
+## Event Types
+
+RBOS captures events across every major area of workspace activity. The table below lists the categories and example events recorded in the audit log.
+
+| Event Category | Examples |
+|---|---|
+| Documents | Created, edited, deleted, version restored, permission changed |
+| Projects | Created, archived, member added, member removed |
+| Workflows | Triggered, completed, failed, modified |
+| AI Agents | Conversation started, action taken, deployed, modified |
+| Members | Invited, role changed, removed, login, logout |
+| Settings | Integration added/removed, SSO configured, retention policy changed |
+
+## Filtering and Searching Logs
+
+The audit log filter bar provides several controls to help you zero in on the events you need:
+
+- **Date range picker** — Select a start and end date to display only events within that window. The default view shows the last 7 days.
+- **User dropdown** — Filter events by a specific workspace member. Useful when investigating the actions of a particular user.
+- **Event category multi-select** — Choose one or more event categories (Documents, Projects, Workflows, etc.) to show only those event types.
+- **Project selector** — Scope the log to activity within a specific project, filtering out events from other projects and workspace-level settings.
+- **Free-text search** — Type any keyword into the search bar to match against event descriptions, resource names, and resource IDs across all visible log entries.
+
+Filters are additive — combining multiple filters narrows the results to events that match all selected criteria simultaneously.
+
+## Exporting Logs
+
+You can export audit log entries for offline storage, compliance reporting, or integration with external SIEM tools.
+
+1. Apply any filters you want to include in the export (or leave filters clear to export all available logs).
+2. Click the **Export** button in the top-right corner of the Audit Logs page.
+3. Choose your preferred format — **CSV** or **JSON**.
+4. Click **Download**. The file will be generated and downloaded to your browser immediately.
+
+Every exported entry includes the following fields: `timestamp`, `user`, `event_type`, `resource_id`, `resource_name`, `project`, `ip_address`, and `details`.
+
+**Example JSON export entry:**
+
+```json
+{
+  "timestamp": "2025-01-15T09:14:32Z",
+  "user": "alice@example.com",
+  "event_type": "document.created",
+  "resource_id": "doc_4k7m9n",
+  "resource_name": "Q3 Compliance Report",
+  "project": "Legal & Compliance",
+  "ip_address": "203.0.113.42",
+  "details": "Document created via import from Google Drive"
+}
+```
+
+<Tip>
+  To maintain a continuous compliance archive, create a recurring RBOS workflow that triggers a log export on a weekly schedule and saves the output to a designated compliance collection. This removes the need for manual exports and ensures nothing falls outside your retention window.
+</Tip>
+
+## Retention Periods
+
+Audit log retention depends on your workspace plan. Logs older than the retention window are permanently deleted and cannot be recovered.
+
+| Plan | Retention Period |
+|---|---|
+| Starter | 30 days |
+| Professional | 90 days |
+| Enterprise | 1 year (configurable) |
+
+Enterprise customers can extend the default one-year retention period or configure custom retention windows by contacting their account manager.
+
+<Note>
+  Audit logs are read-only and cannot be modified or deleted by anyone — including workspace Owners and RBOS administrators. This immutability guarantee is a core part of RBOS's compliance posture and is enforced at the infrastructure level.
+</Note>

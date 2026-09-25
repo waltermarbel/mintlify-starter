@@ -1,0 +1,84 @@
+---
+title: "Core Concepts and Terminology in RBOS"
+sidebarTitle: "Core Concepts"
+description: "Understand the fundamental building blocks of RBOS: workspaces, knowledge bases, projects, workflows, AI agents, and governance."
+---
+
+Before diving into advanced features, it helps to have a clear mental model of how RBOS is structured. Every capability in the platform — from document storage to AI agent deployment — is built on a small set of composable primitives. Understanding these building blocks will make every other part of the documentation easier to follow.
+
+## Workspace
+
+A workspace is the top-level container for an entire organization within RBOS. Every piece of data — documents, projects, workflows, agents, members, and settings — lives inside a workspace and is isolated from all other workspaces. When you sign up, you create at least one workspace, and each workspace has its own URL slug, billing plan, and administrative settings.
+
+<Info>
+  Large enterprises can operate multiple workspaces (for example, separating business units or subsidiaries) and manage them from a centralized admin console. See the Architecture Overview for details on multi-workspace configuration.
+</Info>
+
+## Knowledge Base
+
+The knowledge base is the searchable repository at the heart of every workspace. It holds all documents, notes, wiki pages, SOPs, and binary assets that members upload or import. Every item in the knowledge base is automatically indexed for both full-text and semantic search, making the entire corpus of organizational knowledge instantly queryable by humans and AI agents alike.
+
+<Info>
+  The knowledge base is workspace-wide. Individual projects draw from it by referencing documents rather than duplicating them, so a single document can belong to multiple projects without creating copies.
+</Info>
+
+## Project
+
+A project is a scoped collection of tasks, documents, workflows, and team members organized around a specific goal. Projects give teams a focused working environment without sacrificing access to the broader knowledge base. You can think of a project as a lens on your workspace: it surfaces the people, content, and processes relevant to a particular initiative.
+
+<Note>
+  Projects support nested sub-projects for large initiatives with multiple work streams. Each sub-project inherits its parent's access controls by default, but permissions can be overridden at any level.
+</Note>
+
+## Document
+
+A document is any file, note, wiki page, or structured record stored in the knowledge base. Documents can be created natively within RBOS (as rich-text notes or wiki pages), uploaded as files (PDF, DOCX, Markdown, and more), or imported from external sources like Google Drive, Notion, or Confluence. Once stored, a document is versioned, searchable, and referenceable by projects, workflows, and AI agents.
+
+<Info>
+  RBOS retains the full version history of every document. You can view, compare, or restore any previous version from the document's **History** panel.
+</Info>
+
+## Workflow
+
+A workflow is an automated or manual sequence of steps that moves data, triggers actions, routes approvals, or calls external services. Workflows can be triggered by events (a document is uploaded, a task changes status), by a schedule (every Monday at 9 a.m.), or manually by a team member. Each step in a workflow can read from and write to the knowledge base, invoke an AI agent, send notifications, or call an external integration.
+
+<Note>
+  Workflows support conditional branching, loops, and human-in-the-loop steps where a team member must approve before execution continues. Use the visual workflow builder in **Settings → Workflows** to design and test sequences without writing code.
+</Note>
+
+## AI Agent
+
+An AI agent is a configurable AI assistant scoped to a specific set of knowledge and empowered to take defined actions within RBOS. Agents can answer questions by searching the knowledge base, summarize project status, execute workflow steps, and interact with integrated external tools. Each agent's capabilities are governed by its scope (which documents and projects it can access) and its permission level (read-only vs. read/write).
+
+<Note>
+  Every action an AI agent takes is recorded in the Audit Log under the agent's identity, giving you full visibility into what the agent read, wrote, or triggered — and when.
+</Note>
+
+## Role
+
+A role is a permission set assigned to a workspace member that controls what they can view, edit, or manage. RBOS ships with three built-in roles — **Admin**, **Editor**, and **Viewer** — and supports custom roles for organizations that need finer-grained access control. Roles can be assigned at the workspace level, the project level, or both, allowing you to grant broad access by default and restrict sensitive areas selectively.
+
+<Info>
+  Custom roles are available on Enterprise plans. You can define exactly which resource types and actions each custom role is permitted, then apply them to members or groups.
+</Info>
+
+## Audit Log
+
+The audit log is an immutable record of every action taken within a workspace — including document uploads, permission changes, workflow executions, agent actions, and administrative changes. Every log entry captures who performed the action, what resource was affected, when it occurred, and the outcome. The audit log cannot be modified or deleted, making it a reliable foundation for compliance reporting and security investigations.
+
+<Note>
+  Audit logs can be exported in JSON or CSV format and streamed in real time to a SIEM or data warehouse via the RBOS webhooks integration. Configure log retention and export rules under **Governance → Audit Log**.
+</Note>
+
+---
+
+## Keep Exploring
+
+<CardGroup cols={2}>
+  <Card title="Architecture Overview" icon="sitemap" href="architecture/overview">
+    Go deeper on how workspaces, knowledge bases, and agents are structured and how data flows between them.
+  </Card>
+  <Card title="Glossary" icon="book" href="glossary">
+    A comprehensive reference for every term, component, and configuration option you'll encounter in RBOS.
+  </Card>
+</CardGroup>

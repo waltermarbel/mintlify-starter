@@ -1,0 +1,138 @@
+---
+title: "Upload, Organize, and Manage Documents in RBOS"
+sidebarTitle: "Documents"
+description: "Learn how to add documents to RBOS, organize them into collections, manage versions, and use tags for discoverability."
+---
+
+Documents are the core content unit in RBOS — every piece of knowledge lives as a document, from uploaded PDFs to rich wiki pages written directly in the editor. Whether you are centralizing existing files, capturing new ideas, or syncing content from external tools, RBOS gives you one consistent place to store, find, and collaborate on information.
+
+## Adding Documents
+
+RBOS gives you three paths to bring content into a project. Choose the one that matches your source material.
+
+<Tabs>
+  <Tab title="Upload">
+    Drag one or more files directly onto the Documents tab to upload them instantly, or click **Upload Files** to open a file picker.
+
+    **Supported file types:**
+
+    | Category | Formats |
+    |---|---|
+    | Documents | PDF, DOCX, TXT, MD |
+    | Spreadsheets | XLSX, CSV |
+    | Presentations | PPTX |
+    | Images | PNG, JPG |
+
+    Uploaded files are immediately indexed for full-text search. Large files may take a few moments to finish processing before their contents are fully searchable.
+  </Tab>
+  <Tab title="Create">
+    To author content directly in RBOS, click **+ New Document** from the Documents tab. You will be prompted to choose a document type before the editor opens:
+
+    - **Note** — a lightweight, freeform text document ideal for quick captures, meeting notes, or scratch-pad content.
+    - **Wiki** — a longer-form, richly structured page suited for guides, runbooks, and reference documentation. Supports headings, tables, callouts, and embeds.
+    - **Structured Record** — a form-like document built from defined fields (text, date, select, relation, etc.). Use this for repeatable data entry such as interview notes, bug reports, or vendor evaluations.
+
+    All document types support Markdown shortcuts in the editor — type `/` to open the block insertion menu.
+  </Tab>
+  <Tab title="Import">
+    Connect RBOS to an external tool and pull in content you already own. To set up an import:
+
+    1. Navigate to **Workspace Settings → Integrations**.
+    2. Authenticate with your chosen provider.
+    3. Select the folders, pages, or repositories you want to import.
+    4. Choose a sync mode and click **Start Import**.
+
+    **Available integrations:**
+
+    | Integration | Sync mode options |
+    |---|---|
+    | **Google Drive** | One-way (Drive → RBOS) or bidirectional |
+    | **Notion** | One-way (Notion → RBOS) |
+    | **Confluence** | One-way (Confluence → RBOS) |
+    | **GitHub** | One-way (repository files → RBOS) |
+
+    Bidirectional sync keeps both systems in agreement — edits made in RBOS propagate back to the source, and changes in the source are reflected in RBOS. One-way sync treats the external tool as the system of record.
+  </Tab>
+</Tabs>
+
+<Note>
+  Maximum file upload sizes vary by plan tier. On the **Starter** plan the limit is 25 MB per file; **Pro** raises this to 250 MB; **Enterprise** supports uploads up to 5 GB per file. If you need to upload files that exceed your plan's limit, contact your workspace admin to review upgrade options.
+</Note>
+
+---
+
+## Organizing with Collections
+
+Collections are folders that live inside a project (or directly in the root knowledge base) and let you group related documents so they are easy to browse and maintain.
+
+**Creating a collection:**
+
+1. Open the **Documents** tab inside your project.
+2. Click **+ New Collection** in the left document tree.
+3. Enter a name and an optional description, then press **Enter** or click **Create**.
+
+**Moving documents into a collection:**
+
+- Drag and drop a document from the document list onto the target collection in the left tree.
+- Alternatively, open the document's **⋯** menu and select **Move to Collection**, then pick the destination.
+
+Collections can be nested — create sub-collections inside a collection to build a hierarchy that mirrors your team's mental model. There is no hard limit on nesting depth, but two to three levels is typically enough to stay navigable.
+
+---
+
+## Tags and Metadata
+
+Tags and metadata fields make your documents discoverable beyond simple folder structure, especially as your knowledge base grows.
+
+**Using tags:**
+
+Add one or more tags to any document by opening the document and clicking the **Tags** field in the right-hand metadata panel. Tags are free-form and shared across your workspace, so try to reuse existing tags rather than creating near-duplicates.
+
+**Custom metadata fields:**
+
+Workspace admins can define custom metadata fields on a per-document-type basis:
+
+1. Go to **Workspace Settings → Document Types**.
+2. Select or create a document type.
+3. Click **+ Add Field** and configure the field name, type (text, number, date, select, multi-select, relation), and whether it is required.
+
+Once defined, all documents of that type display the custom fields in their metadata panel. Fields are indexed and filterable in search, making it easy to build saved views such as "all contracts with Status = Pending Review due this quarter."
+
+<Tip>
+  Notes and Wiki pages fully support **Markdown** formatting in the RBOS editor. Use `#` for headings, `**bold**`, backticks for inline code, and fenced code blocks for syntax-highlighted snippets. Type `/table` in the editor to insert a formatted table without writing raw Markdown manually.
+</Tip>
+
+---
+
+## Version History
+
+RBOS automatically saves a new version of a document every time a significant edit is made, and at regular intervals while a document is open. You never need to manually trigger a save.
+
+**Viewing version history:**
+
+1. Open the document you want to inspect.
+2. Click the **⋯** menu in the top-right corner of the document view.
+3. Select **Version History**. A side panel opens showing a chronological list of saved versions, each stamped with the date, time, and the name of the member who made changes.
+
+**Restoring a previous version:**
+
+1. Click any version in the history panel to preview it in the main view.
+2. If the version is the one you want, click **Restore This Version**.
+3. RBOS creates a new version entry for the restore action, so the full edit history is preserved — you can always undo a restore by going back to version history again.
+
+---
+
+## Sharing and Permissions
+
+By default, documents inherit the permissions of the project they belong to — project Editors can edit them, Viewers can read them, and anyone outside the project cannot see them.
+
+**Document-level overrides:**
+
+When you need finer-grained control, you can override permissions at the document level:
+
+- **Restrict to specific members**: Open the document's **⋯** menu, select **Manage Permissions**, and toggle **Override project permissions**. Add individual members with Editor or Viewer access regardless of their project role.
+- **Share via link**: Click **Share** in the top-right corner of a document and toggle **Enable link sharing**. Choose whether the link grants View or Edit access and whether it requires the recipient to be a signed-in workspace member or allows anonymous access (available on Pro and Enterprise plans).
+
+<Accordion title="What happens to document permissions when a project is archived?">
+  When a project is archived, all documents within it become read-only for Editors and Viewers. Owners can still access full document settings. Shared links remain active unless you explicitly disable them before archiving. To regain edit access, restore the project to **Active** status from the project Settings tab.
+</Accordion>

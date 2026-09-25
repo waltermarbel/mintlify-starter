@@ -1,0 +1,67 @@
+---
+title: "AI Agents in RBOS: Automate Your Knowledge Work"
+sidebarTitle: "Overview"
+description: "RBOS AI agents are scoped assistants that search your knowledge base, draft documents, manage tasks, and run workflows on your behalf."
+---
+
+RBOS AI agents are purpose-built assistants that live inside your workspace — not generic chatbots connected to the open internet. Every agent operates strictly within the projects and collections you define, acting on your data, following your workflows, and logging every action it takes. This scoped design means you get the productivity benefits of AI automation without sacrificing visibility or control over your knowledge base.
+
+## What Agents Can Do
+
+<CardGroup cols={2}>
+  <Card title="Search & Answer" icon="magnifying-glass">
+    Perform semantic search across your scoped knowledge base and return precise answers with citations, so your team always knows where information came from.
+  </Card>
+  <Card title="Create & Edit" icon="pen-to-square">
+    Draft new documents, produce summaries of uploaded content, and populate structured records — all within collections you explicitly permit.
+  </Card>
+  <Card title="Run Workflows" icon="arrows-rotate">
+    Trigger workflow actions, route documents through approval steps, and automatically assign tasks based on content or events.
+  </Card>
+  <Card title="Notify & Integrate" icon="bell">
+    Send messages to Slack channels, open or update Jira issues, and call external webhooks to keep every tool your team uses in sync.
+  </Card>
+</CardGroup>
+
+## Agent Templates
+
+Templates give you a pre-configured starting point so you can launch a working agent in minutes rather than building one from scratch. Each template includes a suggested scope, a default tool set, and a role description tuned for a specific job. You can customise any template after creation.
+
+<AccordionGroup>
+  <Accordion title="Knowledge Assistant">
+    Answers questions about your workspace content by searching across the collections in its scope. Best used as a general-purpose Q&A agent for a project or department.
+  </Accordion>
+  <Accordion title="Document Summarizer">
+    Automatically produces structured summaries of documents uploaded to a collection. Ideal for research repositories, contract libraries, or any high-volume document store.
+  </Accordion>
+  <Accordion title="Task Manager">
+    Creates and assigns tasks inside a project based on natural-language instructions or incoming workflow events. Reduces the manual overhead of translating decisions into action items.
+  </Accordion>
+  <Accordion title="Compliance Checker">
+    Reviews documents against rules or policies you define in its memory. Flags missing sections, prohibited language, or required disclosures and can trigger a workflow or Jira issue on failure.
+  </Accordion>
+  <Accordion title="Onboarding Guide">
+    Walks new team members through company knowledge, answers FAQs, and links to relevant documents — without burdening existing staff.
+  </Accordion>
+</AccordionGroup>
+
+## Agent Boundaries
+
+Every agent is granted access only to the projects and collections you explicitly select during configuration. An agent scoped to your **Legal** project cannot read documents in your **Engineering** project, even if both exist in the same workspace. This isolation is enforced at the data layer, not just the prompt level.
+
+All agent activity — every query it runs, every document it creates, every workflow it triggers — is written to the workspace **Audit Log**. You can filter the log by agent name, action type, or date range at any time from **Settings → Audit Log**.
+
+<Note>
+  RBOS agents are powered by RBOS's fully managed LLM infrastructure. There is no model selection required and no external API keys to configure — the platform handles model provisioning, updates, and scaling on your behalf.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Configure an Agent" icon="sliders" href="/agents/configuration">
+    Learn how to define scope, enable tools, add memory facts, and deploy your first agent to production.
+  </Card>
+  <Card title="Connect External Tools" icon="plug" href="/agents/integrations">
+    Integrate agents with Slack, Jira, and custom webhooks to automate cross-tool workflows.
+  </Card>
+</CardGroup>

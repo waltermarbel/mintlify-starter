@@ -1,0 +1,127 @@
+---
+title: "Configure and Deploy RBOS AI Agents"
+sidebarTitle: "Configuration"
+description: "Set up an RBOS AI agent from scratch: define its scope, enable tools, add persistent memory, test in sandbox, and deploy to production."
+---
+
+Configuring an RBOS agent is a step-by-step process that gives you fine-grained control over what the agent can see, what it can do, and how it is triggered. Once configured, every agent passes through a sandboxed testing environment before it can interact with live production data.
+
+## Creating an Agent
+
+<Steps>
+  <Step title="Open the Agents panel">
+    Navigate to **Agents** in the left sidebar and click **+ New Agent** in the top-right corner of the panel.
+  </Step>
+  <Step title="Choose a starting point">
+    Select one of the built-in **Templates** — Knowledge Assistant, Document Summarizer, Task Manager, Compliance Checker, or Onboarding Guide — or choose **Blank Agent** to start from scratch. Templates pre-populate scope suggestions and tool selections that you can adjust.
+  </Step>
+  <Step title="Enter a name and description">
+    Give the agent a clear **Name** (displayed in the chat sidebar and audit log) and a **Description**. The description is passed to the agent at runtime to shape its behaviour — be specific about the agent's role and any constraints it should follow.
+
+    <Tip>
+      A detailed description significantly improves response quality. Instead of "Answers questions", try "Answers questions about our product roadmap using only documents in the Q4 Planning collection. Always cite the source document."
+    </Tip>
+  </Step>
+  <Step title="Configure scope">
+    In the **Scope** panel, select the projects and/or collections this agent is permitted to access. You can grant **Read** or **Read & Write** access per collection. Unselected projects and collections are completely invisible to the agent.
+  </Step>
+  <Step title="Enable tools">
+    Toggle on the capabilities the agent needs. Available tools include **KB Search**, **Document Creation**, **Workflow Trigger**, **Task Assignment**, **Slack Notification**, **Jira Issue**, and **Webhook Call**. Only enable tools the agent's role genuinely requires.
+
+    <Warning>
+      Enabling **Write** access on a tool such as Document Creation or Task Assignment allows the agent to create and modify content in its scoped collections. Review the scope carefully before granting write permissions.
+    </Warning>
+  </Step>
+  <Step title="Add memory facts (optional)">
+    Under **Memory → Persistent Facts**, add any context the agent should always have available — for example, `"Our fiscal year ends in March"` or `"Escalate all compliance failures to the Legal team"`. These facts persist across every conversation and workflow invocation.
+  </Step>
+  <Step title="Set a trigger">
+    Choose how the agent is activated:
+    - **Chat** (default) — users can message the agent directly in the workspace chat sidebar
+    - **Workflow Event** — the agent is invoked as a step inside a workflow
+    - **Scheduled** — the agent runs automatically at a defined interval (e.g., every Monday at 09:00)
+  </Step>
+  <Step title="Save and open the sandbox">
+    Click **Save & Test in Sandbox** to save your configuration and enter the testing environment. The agent is not yet active in production.
+  </Step>
+</Steps>
+
+---
+
+## Scope Configuration
+
+The **Scope** panel is the authoritative control over what data an agent can access. You can select access at two levels:
+
+- **Project level** — grants the agent access to all current and future collections within that project, at the permission level you choose.
+- **Collection level** — grants access to a specific collection only, useful when an agent should be limited to a single document library within a larger project.
+
+For each selected collection, you assign either **Read** or **Read & Write** access:
+
+| Access Level | What the Agent Can Do |
+|---|---|
+| Read | Search and retrieve documents; answer questions; produce summaries |
+| Read & Write | All Read capabilities, plus create documents, update records, and populate structured fields |
+
+Scope changes take effect immediately. If you narrow an agent's scope after deployment, any in-progress workflow actions that reference removed collections will fail gracefully and log an access error in the Audit Log.
+
+---
+
+## Tools Reference
+
+The following tools are available when configuring an agent. Each tool requires a minimum permission level; some also require an active integration.
+
+| Tool | Description | Required Permission |
+|---|---|---|
+| KB Search | Search and retrieve documents from scoped collections | Read |
+| Document Creation | Create new documents in permitted collections | Write |
+| Workflow Trigger | Start a defined workflow | Workflow Execute |
+| Task Assignment | Create and assign tasks in a project | Write |
+| Slack Notification | Send a message to a configured Slack channel | Integration: Slack |
+| Jira Issue | Create or update Jira issues | Integration: Jira |
+| Webhook Call | POST a JSON payload to a configured external HTTPS URL | Integration: Webhooks |
+
+---
+
+## Memory and Context
+
+RBOS agents maintain two distinct layers of context:
+
+**Persistent Facts** are key/value pairs you define in the **Memory** tab of the agent configuration. They are injected into every interaction the agent has, regardless of who triggered it or what the conversation history contains. Use persistent facts for stable, workspace-wide truths: team conventions, company-specific terminology, escalation rules, or fiscal calendar details.
+
+To manage persistent facts:
+1. Open the agent and go to **Memory → Persistent Facts**
+2. Click **+ Add Fact**, enter a label and value, then click **Save**
+3. To edit a fact, click the pencil icon next to it
+4. To remove a fact, click the trash icon — the agent will no longer have access to that information in future sessions
+
+**Conversation History** is session-scoped. When a user opens a chat with an agent, that session's messages are retained for the duration of the conversation and inform the agent's responses within that session. History does not carry over between separate chat sessions.
+
+---
+
+## Testing in Sandbox
+
+The sandbox is a fully functional replica of the agent's production configuration, running against a safe snapshot of your data. Sandbox actions do not create, modify, or trigger anything in your live workspace.
+
+In the sandbox you can:
+- Send messages to the agent and review its responses
+- Inspect the agent's **Reasoning Trace** — a step-by-step log of how it interpreted your message, which tools it called, and what results it retrieved
+- Verify that scope restrictions are working correctly by asking about documents outside the configured scope
+- Test edge cases and failure scenarios without any risk to production data
+
+When you are satisfied with the agent's behaviour in the sandbox, proceed to deployment.
+
+---
+
+## Deploying to Production
+
+Once testing is complete, click **Deploy** in the top-right corner of the sandbox view. Deployment does the following:
+
+- Makes the agent available in the **Chat** sidebar (if the Chat trigger is enabled)
+- Registers the agent as an available action in the **Workflow Builder** (if the Workflow Event trigger is enabled)
+- Activates the schedule (if the Scheduled trigger is enabled)
+
+After deployment, all agent activity is recorded in **Settings → Audit Log**, where you can filter by agent, action type, user, or date range. You can return to an agent's configuration at any time to adjust its scope, tools, or memory facts — changes take effect on the next invocation after saving.
+
+<Note>
+  Redeploying an agent after a configuration change does not require a new sandbox review, but it is good practice to re-test in the sandbox any time you expand the agent's scope or enable additional tools.
+</Note>

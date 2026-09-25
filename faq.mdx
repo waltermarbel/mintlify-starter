@@ -1,0 +1,85 @@
+---
+title: "Frequently Asked Questions About RBOS"
+sidebarTitle: "FAQ"
+description: "Answers to the most common questions about RBOS features, plans, security, AI agents, and data management."
+---
+
+Find quick answers to common questions about RBOS. If you don't see your question here, reach out to our support team and we'll be happy to help.
+
+## Getting Started
+
+<Accordion title="What do I need to get started with RBOS?">
+  All you need is an email address. Sign up at [app.rbos.io](https://app.rbos.io), create a workspace, and you can start adding content immediately. No credit card is required for the Starter plan — your workspace is ready to use the moment you verify your email.
+</Accordion>
+
+<Accordion title="Can I import my existing documents?">
+  Yes — RBOS connects directly to Google Drive, Notion, Confluence, and GitHub. Navigate to **Workspace Settings → Integrations** to set up a sync from any of those sources. You can also drag and drop files directly into any collection for a quick one-time import.
+</Accordion>
+
+<Accordion title="How many workspaces can I have?">
+  Your account can belong to multiple workspaces with no hard limit. You can create a new workspace — or be invited to an existing one — from your account dashboard at any time. This makes it easy to separate clients, teams, or environments.
+</Accordion>
+
+<Accordion title="Is there a mobile app?">
+  RBOS is currently optimized for desktop and tablet browsers and works best in a full-browser environment. A native mobile app is on the roadmap — sign up for product updates to be notified as soon as it launches.
+</Accordion>
+
+## Plans and Billing
+
+<Accordion title="What are the differences between plans?">
+  RBOS offers three plans to fit teams of every size:
+
+  - **Starter** — Free for teams of up to 5 members. Includes core KB, documents, and basic workflows.
+  - **Professional** — Unlimited members, 90-day audit logs, and advanced workflow and agent features.
+  - **Enterprise** — Everything in Professional, plus SSO (SAML 2.0 & OIDC), HIPAA BAA, IP allowlists, data residency selection, and 1-year audit log retention.
+
+  A full feature comparison is available on the pricing page.
+</Accordion>
+
+<Accordion title="Can I change my plan later?">
+  Yes — you can upgrade or downgrade at any time from **Workspace Settings → Billing**. Upgrades take effect immediately and are prorated for the remainder of your billing period. Downgrades apply at the end of the current billing period so you keep access to your current features until then.
+</Accordion>
+
+<Accordion title="What happens to my data if I cancel?">
+  Your data remains fully accessible for 30 days after cancellation. During that window you can export everything from **Workspace Settings → Export**. After 30 days, all workspace data is permanently deleted in accordance with our data retention policy.
+
+  <Note>
+    We strongly recommend exporting your data before your 30-day grace period ends. Deleted data cannot be recovered after the retention window closes.
+  </Note>
+</Accordion>
+
+## AI Agents
+
+<Accordion title="Do I need to provide my own AI or LLM API key?">
+  No — RBOS fully manages the AI infrastructure. Your agents run on RBOS's built-in LLM backend, so there is no need to supply an OpenAI, Anthropic, or any other external API key. Everything is handled for you out of the box.
+</Accordion>
+
+<Accordion title="Can an agent access data outside its configured scope?">
+  No. Agents are strictly scoped and can only read from or write to the projects and collections you explicitly grant during configuration. Any action an agent takes is also recorded in the Audit Log, giving you full visibility into agent activity.
+</Accordion>
+
+<Accordion title="How do I stop an agent that is currently running?">
+  Navigate to **Agents**, find the active agent in the list, and click **Stop**. Any in-progress action will be halted safely. Actions that have already completed — such as documents that were created — will remain; only the remaining steps are cancelled.
+</Accordion>
+
+<Accordion title="Can agents talk to each other or be chained together?">
+  Yes — you can chain agents using Workflow actions. Configure one agent's completion as an Event Trigger for a second workflow, then add a Run Agent action as the next step. This lets you build multi-agent pipelines where each agent hands off results to the next automatically.
+</Accordion>
+
+## Data and Security
+
+<Accordion title="Is my data encrypted?">
+  Yes — all data is encrypted in transit using TLS 1.2 or higher and encrypted at rest using AES-256. Encryption keys are managed by RBOS and are rotated on a regular schedule to maintain a strong security posture.
+</Accordion>
+
+<Accordion title="Where is my data stored?">
+  By default, all workspace data is stored in the United States. Enterprise customers can choose between **US** or **EU** data residency at the time of workspace creation to meet regional compliance requirements.
+</Accordion>
+
+<Accordion title="Is RBOS GDPR compliant?">
+  Yes. RBOS acts as a data processor under the GDPR, and we maintain the technical and organizational measures required under the regulation. A Data Processing Agreement (DPA) is available on request — contact [privacy@rbos.io](mailto:privacy@rbos.io) to receive a copy.
+</Accordion>
+
+<Accordion title="Does RBOS support Single Sign-On (SSO)?">
+  Yes — RBOS supports both **SAML 2.0** and **OIDC** on the Enterprise plan. Once you have upgraded, you can configure your identity provider connection from **Workspace Settings → Security → SSO**. All subsequent logins for your team members will flow through your chosen provider.
+</Accordion>

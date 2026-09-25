@@ -1,0 +1,85 @@
+---
+title: "RBOS Knowledge Base: How Content Is Stored and Searched"
+sidebarTitle: "Knowledge Base"
+description: "Discover how RBOS stores, indexes, and retrieves content using full-text and semantic search across your entire workspace."
+---
+
+The Knowledge Base is the content foundation of RBOS. Every document, wiki page, structured record, and synced file your organization produces lives here — fully indexed, version-controlled, and ready to be searched, linked, or surfaced by an AI agent. Rather than scattering information across disconnected tools, the Knowledge Base gives your entire workspace a single, authoritative source of truth.
+
+## Content Types
+
+RBOS accepts a wide range of content formats so you can centralize work that previously lived in different systems.
+
+<CardGroup cols={2}>
+  <Card title="Documents" icon="file-lines">
+    Upload or create files in **PDF, DOCX, Markdown, and TXT** format. Documents are fully parsed and indexed, including content inside tables and headings.
+  </Card>
+  <Card title="Structured Records" icon="table">
+    Store **forms, tables, and database-style records** with defined fields. Structured records are ideal for tracking inventory, contacts, decisions, or any repeatable data shape.
+  </Card>
+  <Card title="Wiki Pages" icon="book-open">
+    Write **long-form, richly linked pages** directly in RBOS. Wiki pages support cross-document links, embedded media, and inline comments — making them ideal for runbooks, handbooks, and reference material.
+  </Card>
+  <Card title="Assets" icon="image">
+    Store **images, spreadsheets, and presentations** alongside your text content. Asset metadata is indexed so you can find files by name, tag, or the document they are referenced in.
+  </Card>
+  <Card title="External Content" icon="arrow-right-arrow-left">
+    Sync content from connected integrations — **Google Drive, Notion, Confluence, and more**. Synced content is indexed automatically and stays up to date when the source changes.
+  </Card>
+</CardGroup>
+
+## Search Capabilities
+
+RBOS provides two complementary search modes that work together every time you run a query.
+
+**Full-text search** scans every word in every indexed document. It is precise and fast — ideal when you know a specific term, file name, or phrase you are looking for.
+
+**Semantic search** understands the meaning of your query rather than just matching keywords. If you search for "onboarding process for new engineers," you will surface documents about engineering setup guides even if they never use the exact phrase "onboarding process."
+
+Both modes run in parallel automatically. RBOS ranks results by relevance, blending keyword precision with semantic meaning so the most useful documents appear first.
+
+### Filtering Results
+
+You can narrow any search using the filter panel on the right side of the search view:
+
+| Filter | Description |
+|---|---|
+| **Project** | Limit results to one or more specific projects. |
+| **Content Type** | Show only documents, records, wiki pages, assets, or external content. |
+| **Date Range** | Filter by creation date, last modified date, or last accessed date. |
+| **Tags** | Surface only content with one or more specific tags applied. |
+| **Owner** | Find content created or last edited by a particular team member. |
+
+To open search from anywhere in RBOS, press **Cmd+K** (macOS) or **Ctrl+K** (Windows/Linux). The search bar supports natural-language queries and remembers your recent searches.
+
+## Organizing Content
+
+A well-organized Knowledge Base makes search more precise and makes it easier to scope AI agents to the right content.
+
+**Collections** are the primary organizational unit within a project. Think of them as smart folders — you can nest collections, apply access rules at the collection level, and use them to define the boundaries of an agent's knowledge scope.
+
+**Tags** are freeform labels you apply to individual documents. Unlike collections, a document can have multiple tags, making tags ideal for cross-cutting concerns like `compliance`, `draft`, `approved`, or `customer-facing`. Tags are searchable and filterable.
+
+**Links** let you create explicit connections between documents. When you link Document A to Document B, RBOS surfaces those connections in search results and in the agent's context when either document is retrieved. This is especially useful for connecting decisions to the SOPs or policies they affect.
+
+## Versioning
+
+RBOS automatically maintains a complete version history for every document from the moment it is created. You never need to manually save a snapshot — every edit is recorded.
+
+To access previous versions:
+
+1. Open the document you want to inspect.
+2. Click the **⋯ menu** in the top-right corner of the document view.
+3. Select **Version History**.
+4. Browse the list of versions by date and editor, then click any version to preview it.
+5. Select **Restore This Version** to roll back, or **Duplicate as New Document** to branch it.
+
+Version history is retained according to your workspace's data retention policy. On the Enterprise plan, full version history is kept indefinitely.
+
+<Tip>
+  Apply consistent tags to documents before they enter production collections. AI agents use tags as retrieval signals — a document tagged `approved-policy` is more likely to be surfaced when an agent answers compliance-related questions than an untagged document with the same content.
+</Tip>
+
+<Note>
+  Storage limits vary by plan. The Team plan includes 50 GB of Knowledge Base storage per workspace. The Business plan includes 500 GB. Enterprise plans include unlimited storage with custom retention settings. You can view current usage under **Workspace Settings → Storage**.
+</Note>

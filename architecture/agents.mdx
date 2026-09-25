@@ -1,0 +1,75 @@
+---
+title: "AI Agent Architecture in RBOS: Scope, Tools, and Memory"
+sidebarTitle: "Agent Architecture"
+description: "Understand how RBOS AI agents are scoped, what tools they can access, and how agent memory and context windows work."
+---
+
+RBOS agents are AI assistants that operate within explicitly defined boundaries — they can only read, write, and act on the data and tools you deliberately permit. Every agent is a discrete, configurable unit with its own scope, toolset, memory, and activation conditions. This design means you can deploy highly targeted agents for specific teams or workflows without exposing unrelated knowledge or granting unintended access.
+
+## Agent Components
+
+Each agent you create in RBOS is assembled from four core components. Together, these components determine what the agent knows, what it can do, and when it acts.
+
+<CardGroup cols={2}>
+  <Card title="Scope" icon="crosshairs">
+    **Scope** defines which projects and collections the agent is allowed to access. An agent can only read or write content within its configured scope — content outside those boundaries is invisible to it, regardless of the query.
+  </Card>
+  <Card title="Tools" icon="wrench">
+    **Tools** are the actions the agent can perform. You choose from a curated set: search the Knowledge Base, create or update documents, run a workflow, send a notification, query structured records, or call an external integration.
+  </Card>
+  <Card title="Memory" icon="brain">
+    **Memory** covers both the agent's in-session conversation history and any persistent facts it is allowed to retain between sessions — such as user preferences, recurring project context, or tracked decisions.
+  </Card>
+  <Card title="Triggers" icon="bolt">
+    **Triggers** determine what activates the agent: a direct user message, an event fired by the Orchestration Layer (such as a document being added to a collection), a scheduled time, or an incoming webhook from an external system.
+  </Card>
+</CardGroup>
+
+## Agent Isolation
+
+Every agent in RBOS runs in its own isolated context. This is not just a permission setting — it is an architectural guarantee enforced at the Agent Layer.
+
+When an agent receives a query or trigger, it can only retrieve content from collections explicitly listed in its scope. It can only invoke tools that have been enabled for it. Its memory is private to that agent and is not shared with other agents in your workspace, even agents that cover overlapping scopes.
+
+This isolation has two important practical consequences:
+
+- **You can run multiple specialized agents in the same workspace** — a customer-support agent, an engineering runbook agent, and a compliance agent — without risk of one agent surfacing information that belongs to another domain.
+- **Agent behavior is auditable and predictable.** Because every read, write, and tool invocation is scoped and logged, you always know exactly what data an agent touched and why.
+
+<Info>
+  Agent scope is evaluated at query time, not at configuration time. If you remove a collection from an agent's scope, the agent immediately loses access — even for data it previously read.
+</Info>
+
+## Agent Lifecycle
+
+Creating and deploying a production-ready agent follows a structured process. Moving through each stage deliberately prevents misconfigured agents from reaching live data before they have been validated.
+
+<Steps>
+  <Step title="Define Scope">
+    Select the projects and collections the agent is permitted to access. Be as specific as possible — a narrower scope produces more relevant responses and reduces the risk of unintended data exposure.
+  </Step>
+  <Step title="Configure Tools">
+    Enable the tools the agent needs to fulfill its purpose. If the agent is read-only (for example, an FAQ bot), do not enable document-creation or workflow-execution tools. Principle of least privilege applies here.
+  </Step>
+  <Step title="Test in Sandbox">
+    Before deploying, switch to the **Sandbox environment** in the agent configuration panel. The sandbox mirrors your production scope and tools but writes to an isolated copy of your data. Run representative queries and edge cases here to validate behavior.
+  </Step>
+  <Step title="Deploy">
+    Promote the agent from sandbox to production. Choose how it will be surfaced — as a chat interface, an embedded widget, a workflow step, or a scheduled background agent. Set the trigger conditions that will activate it.
+  </Step>
+  <Step title="Monitor">
+    Use the **Agent Activity dashboard** to review query logs, tool invocations, and response quality over time. You can pause, re-scope, or roll back an agent at any point without losing its configuration or memory.
+  </Step>
+</Steps>
+
+<Warning>
+  Be deliberate when granting an agent write access to production collections. An agent with write permissions can create, modify, and (if enabled) delete documents without additional confirmation. Always test write-enabled agents thoroughly in the sandbox before deploying, and consider restricting write access to specific sub-collections rather than an entire project.
+</Warning>
+
+<Tip>
+  Use the sandbox environment not just for initial setup but for ongoing changes. Any time you update an agent's scope, add a new tool, or adjust its system prompt, re-run your test cases in the sandbox before promoting the update to production.
+</Tip>
+
+## Next Steps
+
+For step-by-step instructions on creating and configuring an agent, see the [Agent Configuration guide](/agents/configuration).

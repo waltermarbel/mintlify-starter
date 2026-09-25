@@ -1,0 +1,97 @@
+---
+title: "Manage Roles and Permissions in RBOS"
+sidebarTitle: "Permissions"
+description: "Understand RBOS workspace and project roles, configure member access, and set document-level permissions for fine-grained access control."
+---
+
+RBOS uses a two-tier permission model — workspace-level roles govern global access, while project-level roles allow you to grant narrower access for specific work. This structure lets you enforce a broad baseline across your organization while still tailoring visibility and editing rights for individual teams or external collaborators.
+
+## Workspace Roles
+
+Every member of your workspace is assigned one of four workspace-level roles. These roles apply globally across all projects and content unless overridden at the project level.
+
+| Role | Description | Key Capabilities |
+|---|---|---|
+| Owner | Full control of the workspace | Billing management, workspace deletion, all Admin actions |
+| Admin | Manage members and workspace settings | Invite/remove members, configure integrations, manage SSO and IP allowlist |
+| Editor | Create and manage content | Create projects, documents, and workflows; manage AI agents |
+| Viewer | Read-only access | View documents and projects; cannot edit, create, or delete any content |
+
+<Note>
+  Each workspace has exactly one Owner. Ownership can be transferred from **Workspace Settings → Members** by the current Owner.
+</Note>
+
+## Project-Level Roles
+
+Project roles let you fine-tune access within a specific project. A member's project role takes effect instead of their workspace role for all resources inside that project — but project roles can only restrict access, never elevate it. For example, a workspace Editor can be given Viewer access on a sensitive project, but a workspace Viewer cannot be elevated to a project Editor.
+
+| Role | Description | Key Capabilities |
+|---|---|---|
+| Project Owner | Full control of the project | Archive or delete the project, manage all project members |
+| Editor | Create and edit within the project | Add documents, run workflows, configure agents scoped to the project |
+| Viewer | Read-only access to the project | View documents and activity feed; cannot edit or create |
+
+<Tip>
+  Use project-level Viewer access to share specific projects with external stakeholders — such as contractors, auditors, or clients — without granting them any access to the rest of your workspace.
+</Tip>
+
+## Inviting Members
+
+<Steps>
+  <Step title="Open Workspace Settings">
+    Click your workspace name in the top-left corner and select **Workspace Settings**, then navigate to the **Members** tab.
+  </Step>
+  <Step title="Click Invite">
+    Click the **Invite** button in the top-right corner of the Members page.
+  </Step>
+  <Step title="Enter details and choose a role">
+    Enter the invitee's email address and select their workspace role — Owner, Admin, Editor, or Viewer. You can invite multiple people at once by entering several email addresses.
+  </Step>
+  <Step title="Send the invitation">
+    Click **Send Invitation**. The invitee will receive an email with a link to join your workspace. Pending invitations are listed under the **Pending** tab and can be revoked at any time.
+  </Step>
+</Steps>
+
+To add an existing workspace member to a specific project, open the project, go to **Project → Settings → Members**, click **Add Member**, and select the member and their project-level role.
+
+## Document-Level Permissions
+
+By default, documents inherit the access settings of their parent project. You can override this on any individual document to restrict who can view or edit it — useful for sensitive drafts, confidential reports, or documents under legal review.
+
+To restrict access on a document:
+
+1. Open the document and click the **⋯** menu in the top-right corner.
+2. Select **Share**.
+3. Under **Access**, switch from **Inherited** to **Restricted**.
+4. Add specific members or groups and assign each one an **Editor** or **Viewer** role.
+5. Click **Save**. Members not listed will no longer be able to access the document, regardless of their workspace or project role.
+
+<Warning>
+  Restricting a document's access removes it from the project view for anyone not explicitly listed. Make sure the right people are added before saving to avoid disrupting active collaborators.
+</Warning>
+
+## Configuring SSO (Enterprise)
+
+Single Sign-On lets your team authenticate through your existing identity provider. RBOS supports both **SAML 2.0** and **OIDC** on the Enterprise plan.
+
+<Steps>
+  <Step title="Open the SSO settings">
+    Go to **Workspace Settings → Security → SSO**.
+  </Step>
+  <Step title="Choose your SSO protocol">
+    Select either **SAML 2.0** or **OIDC** depending on what your identity provider supports.
+  </Step>
+  <Step title="Enter your IdP configuration">
+    Paste your IdP **metadata URL** (recommended) or upload your IdP **certificate** and enter the SSO endpoint URL manually.
+  </Step>
+  <Step title="Map groups to RBOS roles">
+    Under **Group Mappings**, define which IdP groups should be assigned each RBOS workspace role. For example, map your `rbos-admins` IdP group to the Admin role.
+  </Step>
+  <Step title="Test and enable">
+    Click **Test Connection** to verify the configuration with a test login. Once the test passes, click **Enable SSO**. Existing password-based logins remain active until you optionally enforce SSO-only access from the same settings page.
+  </Step>
+</Steps>
+
+<Note>
+  SSO configuration requires the Enterprise plan. If SSO is enforced, members who have not authenticated through the configured IdP will be unable to access the workspace.
+</Note>

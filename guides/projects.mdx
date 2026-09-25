@@ -1,0 +1,100 @@
+---
+title: "Create and Manage Projects in RBOS"
+sidebarTitle: "Projects"
+description: "Learn how to create, organize, and manage RBOS projects — including team access, status tracking, and linking documents and workflows."
+---
+
+Projects are the primary unit of organization in RBOS — every document, workflow, and AI agent exists within (or across) projects. By grouping related work into a single scoped container, your team can move faster, stay aligned, and keep knowledge exactly where it belongs.
+
+## Creating a Project
+
+<Steps>
+  <Step title="Open the New Project dialog">
+    From the left sidebar, click **+ New Project**. The project creation dialog will appear over your current view.
+  </Step>
+  <Step title="Fill in the project details">
+    Enter a **Name** for your project, an optional **Description** to help teammates understand its purpose, and one or more **Tags** to improve searchability across your workspace.
+  </Step>
+  <Step title="Choose visibility">
+    Select who can see this project:
+    - **Private** — only explicitly added members can see or access this project.
+    - **Team** — visible to members of a specific team within your workspace.
+    - **Workspace-wide** — discoverable by everyone in your organization's workspace.
+  </Step>
+  <Step title="Add members and assign roles">
+    Search for teammates by name or email and assign each one a role — **Editor** or **Viewer** — before clicking **Create Project**. You can always adjust membership later from the project settings.
+  </Step>
+</Steps>
+
+<Tip>
+  Use **project templates** to skip repetitive setup for recurring project types such as product launches, hiring pipelines, or quarterly reviews. When creating a project, click **Start from Template** to browse the template library and pre-populate structure, tasks, and workflows in one click.
+</Tip>
+
+---
+
+## Project Anatomy
+
+Once inside a project, a tab bar at the top gives you access to every dimension of that project's work.
+
+| Tab | What it contains |
+|---|---|
+| **Overview** | High-level summary, description, pinned documents, recent activity feed, and key metrics |
+| **Documents** | All documents and collections belonging to this project |
+| **Tasks** | Work items scoped to this project — assignees, due dates, priorities, and statuses |
+| **Workflows** | Automated and manual workflows that run in the context of this project |
+| **Agents** | AI agents attached to or created within this project |
+| **Activity** | A full audit trail of every change made — documents edited, tasks updated, members added |
+| **Settings** | Project name, description, tags, visibility, member management, and danger-zone actions |
+
+---
+
+## Managing Members
+
+RBOS uses three project-level roles to control what teammates can do inside a project.
+
+| Role | Permissions |
+|---|---|
+| **Owner** | Full control — edit settings, manage members, archive or delete the project |
+| **Editor** | Create, edit, and delete documents, tasks, and workflows; cannot change project settings or manage membership |
+| **Viewer** | Read-only access to all project content; cannot create or modify anything |
+
+To add or remove members:
+
+1. Open the project and navigate to the **Settings** tab.
+2. Click **Members** in the left settings panel.
+3. Use the **Add Member** field to search by name or email, then choose their role.
+4. To remove a member, click the **⋯** menu next to their name and select **Remove from Project**.
+
+<Note>
+  Workspace-level visibility does not grant write access. A project set to **Workspace-wide** can be discovered and viewed by all workspace members, but only explicitly added members with the Editor or Owner role can create or modify content inside it.
+</Note>
+
+---
+
+## Project Status
+
+Every project carries a status that signals its current state to your team. You can update status at any time from the project **Overview** or **Settings** tab.
+
+| Status | Meaning |
+|---|---|
+| **Active** | The project is in progress and receiving regular updates |
+| **On Hold** | Work is temporarily paused; the project remains accessible but is visually distinguished |
+| **Archived** | The project is complete or no longer active; it moves to the archive and is hidden from the main sidebar by default |
+
+To change a project's status, open the project and click the current status badge at the top of the **Overview** tab, then select the new status from the dropdown.
+
+<Warning>
+  Archiving a project does not delete any content — documents, tasks, and workflows are fully preserved and searchable. However, archived projects cannot have new workflows activated until the project is restored to **Active**.
+</Warning>
+
+---
+
+## Linking Documents and Workflows
+
+RBOS supports cross-project references so you can connect knowledge without duplicating it.
+
+- **@-references**: In any document, task description, or workflow name field, type `@` followed by the name of a document, project, or workflow. RBOS will surface a suggestion list and create a live, clickable link to the referenced item.
+- **Cross-project document links**: When you @-reference a document from another project, the link respects the viewer's permissions — teammates who lack access to the source project will see a locked indicator rather than the document content.
+- **Workflow references**: Workflows can trigger actions in other projects (for example, creating a document in a shared documentation project when a task closes in a product project). Configure this by selecting **Target Project** in the action settings panel.
+
+Using @-references keeps your knowledge graph connected and surfaces relevant context directly inside the editor — no copy-pasting or hunting through the sidebar required.

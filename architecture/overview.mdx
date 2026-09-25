@@ -1,0 +1,76 @@
+---
+title: "How RBOS Is Structured: A System Overview"
+sidebarTitle: "Overview"
+description: "Learn how RBOS organizes your enterprise data across four interconnected layers: Knowledge, Orchestration, Agents, and Governance."
+---
+
+RBOS is built around a layered architecture designed to give your organization one unified place for knowledge, automation, and intelligent assistance. Rather than stitching together separate tools, RBOS connects your content, your workflows, and your AI agents through four integrated layers — each with a distinct role, all operating within the boundaries of your workspace.
+
+## The Four Layers
+
+Every capability in RBOS belongs to one of four layers. Understanding how these layers relate to one another helps you get the most out of the platform.
+
+<CardGroup cols={2}>
+  <Card title="Knowledge Layer" icon="database">
+    Stores and indexes all of your organization's content — documents, wikis, structured records, and assets — and makes it instantly searchable using both full-text and semantic search.
+  </Card>
+  <Card title="Orchestration Layer" icon="arrows-rotate">
+    Manages your automated and manual workflows, including triggers, conditions, and actions. This layer coordinates events across projects, integrations, and agents so that the right things happen at the right time.
+  </Card>
+  <Card title="Agent Layer" icon="robot">
+    Hosts your configured AI agents, each scoped to specific knowledge and equipped with defined tools. Agents can answer questions, create documents, run workflows, and surface insights — all within the permissions you set.
+  </Card>
+  <Card title="Governance Layer" icon="shield-check">
+    Enforces role-based access controls, records a tamper-evident audit trail, and applies data retention and compliance policies across your entire workspace.
+  </Card>
+</CardGroup>
+
+## Content Hierarchy
+
+Content in RBOS is organized in a four-level hierarchy. Each level inherits the permissions and settings of the level above it, making administration predictable and scalable.
+
+| Level | Description |
+|---|---|
+| **Workspace** | The top-level container for your entire organization. All members, projects, settings, and data live here. |
+| **Projects** | Logical groupings of work, goals, tasks, documents, and collaborators. A project might represent a team, a product line, or an initiative. |
+| **Collections** | Folders within a project that organize related documents and assets. Collections are the primary unit of agent scoping and access control. |
+| **Documents** | Individual pieces of content — pages, records, wikis, files, or externally synced items — that live inside a collection. |
+
+You can nest collections within a project as deeply as your organization needs, and you can move documents between collections without losing their version history or metadata.
+
+## Data Flow
+
+When you add a document to RBOS, it immediately becomes part of your living knowledge base. Here is what happens from the moment content enters the system to the moment it is actionable by agents and workflows.
+
+<Steps>
+  <Step title="Content Is Ingested">
+    You upload, create, or sync a document into a collection. RBOS accepts files (PDF, DOCX, Markdown, and more), inline pages, structured records, and content pulled in from connected integrations like Google Drive or Confluence.
+  </Step>
+  <Step title="Indexing Runs Automatically">
+    The Knowledge Layer processes the document in the background. It builds a full-text index for keyword search and a semantic index (vector embedding) for meaning-based retrieval. Both become available within seconds of ingestion.
+  </Step>
+  <Step title="Workflows Are Evaluated">
+    The Orchestration Layer checks whether any workflow triggers match the new document — for example, a trigger that fires when a new SOP is added to a specific collection, kicking off a review-and-approval process.
+  </Step>
+  <Step title="Agents Gain Access">
+    Any agent whose scope includes the destination collection can immediately read the document. If the agent has write permissions, it can also annotate, summarize, or cross-reference the content automatically.
+  </Step>
+  <Step title="Governance Is Enforced">
+    Every action — ingestion, indexing, workflow execution, agent reads and writes — is recorded in the audit log. Retention policies apply from the moment the document is stored.
+  </Step>
+</Steps>
+
+<Note>
+  All data processed and stored by RBOS — including vector indexes, workflow history, and agent memory — remains within your workspace boundary. RBOS does not use your content to train models or share data across workspaces.
+</Note>
+
+## Explore Further
+
+<CardGroup cols={2}>
+  <Card title="Knowledge Base" href="/architecture/knowledge-base" icon="database">
+    Learn how RBOS stores, indexes, and retrieves your content using full-text and semantic search.
+  </Card>
+  <Card title="Agent Architecture" href="/architecture/agents" icon="robot">
+    Understand how agents are scoped, what tools they can use, and how agent memory works.
+  </Card>
+</CardGroup>

@@ -1,0 +1,78 @@
+---
+title: "Governance in RBOS: Access, Compliance, and Audit"
+sidebarTitle: "Overview"
+description: "RBOS provides enterprise-grade governance with role-based permissions, immutable audit logs, data retention policies, and compliance certifications."
+---
+
+RBOS is built for enterprise environments where control, accountability, and compliance are non-negotiable. Every action taken in your workspace is governed by a layered permission model, recorded in tamper-proof audit logs, and subject to configurable data retention policies — so your team can move fast without sacrificing oversight.
+
+## Governance Pillars
+
+<CardGroup cols={2}>
+  <Card title="Access Control" icon="lock">
+    Role-based permissions at both the workspace and project level ensure that every member has exactly the access they need — no more, no less.
+  </Card>
+  <Card title="Audit Logs" icon="clipboard-list">
+    An immutable record of every action taken in your workspace, including document edits, agent activity, member changes, and configuration updates.
+  </Card>
+  <Card title="Data Retention" icon="clock">
+    Automated archiving and deletion policies keep your workspace clean and compliant. Configure policies per collection or across the entire workspace.
+  </Card>
+  <Card title="Compliance" icon="shield-check">
+    RBOS meets SOC 2 Type II and GDPR requirements on all plans. Enterprise plans add HIPAA BAA support and data residency options for the EU and US.
+  </Card>
+</CardGroup>
+
+## Compliance Certifications
+
+RBOS maintains the following compliance certifications and standards. Enterprise customers can request compliance reports directly from the support team.
+
+| Standard | Status | Plan |
+|---|---|---|
+| SOC 2 Type II | Certified | All plans |
+| GDPR | Compliant | All plans |
+| HIPAA (BAA) | Available | Enterprise |
+| Data Residency (EU/US) | Available | Enterprise |
+
+## Security Features
+
+In addition to role-based access control, RBOS provides several infrastructure-level security features to protect your workspace data.
+
+<Accordion title="Single Sign-On (SSO)">
+  RBOS supports **SAML 2.0** and **OIDC**-based SSO on the Enterprise plan. Once configured, members sign in through your identity provider (IdP), and group memberships can be mapped directly to RBOS workspace roles for automatic provisioning.
+
+  To configure SSO, navigate to **Workspace Settings → Security → SSO**, choose your protocol, and supply your IdP metadata URL or certificate. See [Permissions](/governance/permissions) for the full setup walkthrough.
+</Accordion>
+
+<Accordion title="IP Allowlist">
+  Enterprise workspaces can restrict access to a defined list of IP ranges. Any login or API request originating from outside the allowlist is automatically blocked, regardless of valid credentials.
+
+  To manage your allowlist, go to **Workspace Settings → Security → IP Allowlist** and add individual addresses or CIDR ranges.
+</Accordion>
+
+<Accordion title="Encryption">
+  All data stored in RBOS is encrypted at rest using AES-256. All data transmitted between your browser or API client and RBOS servers is encrypted in transit using TLS 1.2 or higher. Encryption is enabled by default and cannot be disabled.
+</Accordion>
+
+## Getting Compliance Reports
+
+You can access RBOS compliance documentation directly from your workspace or by contacting the support team.
+
+- **SOC 2 Type II Report** — Available to customers on request. Contact [support@rbos.io](mailto:support@rbos.io) with your workspace name and a member of the security team will provide the report under NDA.
+- **Data Processing Agreement (DPA)** — Required for GDPR compliance. You can review and sign the DPA from **Workspace Settings → Security → Compliance Documents**.
+- **HIPAA BAA** — Enterprise customers requiring a Business Associate Agreement should contact their account manager or reach out to [enterprise@rbos.io](mailto:enterprise@rbos.io).
+
+<Note>
+  Data residency options (EU and US regions) must be selected at workspace creation time. Migrating an existing workspace to a different region requires contacting Enterprise support.
+</Note>
+
+## Explore Governance Topics
+
+<CardGroup cols={2}>
+  <Card title="Permissions" icon="users" href="/governance/permissions">
+    Configure workspace and project roles, invite members, set up SSO, and manage document-level access.
+  </Card>
+  <Card title="Audit Logs" icon="clipboard-list" href="/governance/audit-logs">
+    Access, filter, and export your workspace audit log for compliance reviews and incident investigations.
+  </Card>
+</CardGroup>

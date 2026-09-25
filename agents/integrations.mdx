@@ -1,0 +1,133 @@
+---
+title: "Connect RBOS AI Agents to External Tools"
+sidebarTitle: "Integrations"
+description: "Integrate RBOS agents with Slack, Jira, and external APIs via webhooks to automate cross-tool workflows and notifications."
+---
+
+RBOS agents can reach beyond the knowledge base and connect to the tools your team already uses every day. By linking an agent to Slack, Jira, or an external API, you close the loop between your internal knowledge work and the systems where decisions get acted on — without building custom automation from scratch.
+
+## Available Integrations
+
+<CardGroup cols={3}>
+  <Card title="Slack" icon="slack">
+    Send automated messages to any Slack channel when an agent completes a task, flags an issue, or reaches a workflow milestone.
+  </Card>
+  <Card title="Jira" icon="jira">
+    Create and update Jira issues directly from agent actions — ideal for compliance failures, task assignments, or document review outcomes.
+  </Card>
+  <Card title="Webhooks" icon="webhook">
+    POST structured JSON payloads to any HTTPS endpoint, giving agents the ability to trigger events in virtually any external system.
+  </Card>
+</CardGroup>
+
+## Setting Up Integrations
+
+<Tabs>
+  <Tab title="Slack">
+    Connecting Slack lets any agent in your workspace send messages to a designated channel. You configure the connection once at the workspace level and then enable the **Slack Notification** tool on individual agents.
+
+    <Steps>
+      <Step title="Open Slack integration settings">
+        Go to **Workspace Settings → Integrations → Slack**.
+      </Step>
+      <Step title="Authorise the connection">
+        Click **Connect Slack**. You will be redirected to Slack's OAuth screen — sign in and grant RBOS permission to post messages on behalf of your workspace.
+      </Step>
+      <Step title="Select a default channel">
+        After authorisation, choose a **Default Channel** (e.g., `#project-updates`). Individual agents can override this with a specific channel in their tool configuration.
+      </Step>
+      <Step title="Enable the tool on an agent">
+        Open any agent's configuration, go to **Tools**, and toggle on **Slack Notification**. Optionally specify a channel override for that agent.
+      </Step>
+    </Steps>
+
+    **Example behaviour:** A Document Summarizer agent finishes processing a newly uploaded report and posts the following to `#project-updates`:
+
+    > ✅ **Document review complete** — *Q3 Market Analysis* has been summarised and added to the Research collection. [View summary →]
+
+    <Tip>
+      You can include dynamic values in Slack messages — such as the document title, author, or a direct link — by referencing them in the agent's description or workflow action configuration.
+    </Tip>
+  </Tab>
+
+  <Tab title="Jira">
+    The Jira integration allows agents to create and update issues in your Jira project, making it straightforward to turn compliance failures, review outcomes, or task assignments into trackable work items.
+
+    <Steps>
+      <Step title="Open Jira integration settings">
+        Go to **Workspace Settings → Integrations → Jira**.
+      </Step>
+      <Step title="Enter your Jira credentials">
+        Enter your **Jira domain** (e.g., `yourcompany.atlassian.net`) and a **Jira API token**. The token is used to authenticate RBOS on your behalf.
+      </Step>
+      <Step title="Select a default project">
+        Choose the **Default Jira Project** where new issues will be created. Individual agents can target a different project via their tool configuration.
+      </Step>
+      <Step title="Enable the tool on an agent">
+        Open any agent's configuration, go to **Tools**, and toggle on **Jira Issue**. The agent can now create and update issues within the selected project.
+      </Step>
+    </Steps>
+
+    **Example behaviour:** A Compliance Checker agent reviews an uploaded contract and detects a missing disclosure section. It automatically creates a Jira issue:
+
+    - **Summary:** `[Compliance] Missing disclosure — Q3 Financial Report`
+    - **Priority:** High
+    - **Assignee:** Legal team queue
+    - **Description:** Includes the specific clause that failed, the document link, and a timestamp
+
+    <Note>
+      The Jira integration requires a personal API token from your Jira account. You can generate one in your Jira profile under **Security → API tokens**. RBOS stores this token in encrypted form and uses it only to perform actions on behalf of the configured agent.
+    </Note>
+  </Tab>
+
+  <Tab title="Webhooks">
+    Webhooks give agents the ability to POST a structured JSON payload to any external HTTPS endpoint — no dedicated integration required. Use webhooks to connect agents to internal services, third-party platforms, or automation tools like Zapier or Make.
+
+    <Steps>
+      <Step title="Enable the Webhook Call tool">
+        Open the agent's configuration, go to **Tools**, and toggle on **Webhook Call**.
+      </Step>
+      <Step title="Add one or more webhook URLs">
+        Under **Integrations → Webhooks**, click **+ Add URL** and enter the destination endpoint. All URLs must use **HTTPS**.
+      </Step>
+      <Step title="Configure request headers (optional)">
+        Add any custom headers the receiving endpoint requires — for example, an `Authorization` header with a bearer token or an `X-API-Key` header.
+      </Step>
+      <Step title="Test and deploy">
+        Use the **Sandbox** to send a test event and confirm your endpoint receives the expected payload. Then deploy the agent to production.
+      </Step>
+    </Steps>
+
+    **Example payload** sent when a Compliance Checker agent detects a failed check:
+
+    ```json
+    {
+      "agent": "compliance-checker",
+      "event": "check_failed",
+      "document_id": "doc_8x9f2a",
+      "document_title": "Q3 Financial Report",
+      "reason": "Missing required disclosure section",
+      "timestamp": "2025-01-15T14:32:00Z"
+    }
+    ```
+
+    <Warning>
+      Webhook URLs must be publicly accessible HTTPS endpoints. HTTP endpoints and private/internal network addresses (e.g., `localhost`, `192.168.x.x`) are not accepted. If your internal service is behind a firewall, use a secure tunnel or API gateway to expose it over HTTPS before adding it here.
+    </Warning>
+  </Tab>
+</Tabs>
+
+## Using Integrations in Multi-Agent Pipelines
+
+Integrations become especially powerful when agents are chained together in a workflow. For example, you might configure a pipeline where:
+
+1. A **Document Summarizer** agent processes an uploaded file and stores the summary
+2. A **Compliance Checker** agent reviews the summary against policy rules
+3. On failure, the Compliance Checker creates a **Jira issue** and posts a **Slack alert** to the legal team channel
+4. On pass, it calls a **Webhook** to trigger downstream publishing automation
+
+Each step is a discrete agent action, giving you a full audit trail of what ran, what each agent decided, and what external calls were made.
+
+<Note>
+  All outbound integration calls — Slack messages, Jira issue creations, and webhook POSTs — are recorded in **Settings → Audit Log** with the agent name, timestamp, destination, and response status code.
+</Note>

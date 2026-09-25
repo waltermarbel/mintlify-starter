@@ -1,0 +1,97 @@
+---
+title: "Build and Automate Workflows in RBOS"
+sidebarTitle: "Workflows"
+description: "Design automated workflows in RBOS using triggers, conditions, and actions to streamline document routing, notifications, and approvals."
+---
+
+Workflows let you automate repetitive processes — from routing new documents to the right team, to sending alerts when a project status changes. Instead of manually shepherding work through each step, you define the logic once and let RBOS handle the execution every time the conditions are met.
+
+## Workflow Building Blocks
+
+Every RBOS workflow is composed of three building blocks. Understanding how they fit together makes it straightforward to model almost any business process.
+
+<CardGroup cols={3}>
+  <Card title="Triggers" icon="bolt">
+    The event or condition that starts the workflow. A trigger can be fired manually by a user, on a scheduled cadence, or automatically in response to something that happens in RBOS — such as a document being added or a task changing status.
+  </Card>
+  <Card title="Conditions" icon="filter">
+    Optional rules that must evaluate to true before the workflow continues. Conditions let you narrow a broad trigger — for example, only proceed when the document type is "Contract" or when the assigned user is on a specific team.
+  </Card>
+  <Card title="Actions" icon="play">
+    The work the workflow performs: create a document, notify a member, assign a task, call a webhook, or run an AI agent. You can chain multiple actions together to model multi-step processes in a single workflow.
+  </Card>
+</CardGroup>
+
+---
+
+## Creating a Workflow
+
+<Steps>
+  <Step title="Navigate to the Workflows tab">
+    Open the project where you want the workflow to live and click the **Workflows** tab in the top navigation bar.
+  </Step>
+  <Step title="Create and name the workflow">
+    Click **+ New Workflow**. Enter a clear, descriptive name — something that makes the workflow's purpose obvious to teammates who may edit it later.
+  </Step>
+  <Step title="Choose a Trigger">
+    Select one of the available trigger types: **Manual**, **Scheduled**, or an **Event-based** trigger such as *"Document added"* or *"Task status changed"*. Configure any required parameters for the trigger (for example, a cron expression for a scheduled trigger or the target collection for an event trigger).
+  </Step>
+  <Step title="Add Conditions (optional)">
+    Click **+ Add Condition** to apply filtering logic. Each condition targets a specific field (document type, task priority, project tag, etc.) and a comparison operator (equals, contains, is not, etc.). Add multiple conditions and choose whether **all** or **any** must be true.
+  </Step>
+  <Step title="Add Actions">
+    Click **+ Add Action** and select from the action palette. Available actions include:
+    - **Create Document** — generate a new document from a template in a specified collection
+    - **Notify Member** — send an in-app or email notification to one or more members
+    - **Assign Task** — create or reassign a task with a specified priority and due date
+    - **Call Webhook** — POST a payload to an external HTTPS endpoint
+    - **Run Agent** — hand off context to an AI agent and optionally chain its output to the next action
+
+    Drag actions to reorder them; they execute top-to-bottom.
+  </Step>
+  <Step title="Save and activate">
+    Click **Save & Activate**. The workflow is now live and will fire whenever its trigger conditions are met. You can toggle it off at any time from the workflow list without deleting it.
+  </Step>
+</Steps>
+
+<Tip>
+  Before activating a workflow in production, use the **Dry Run** feature to simulate execution with real data without actually performing any actions. Click **⋯ → Dry Run** from the workflow detail page to review each step's output and catch configuration issues early.
+</Tip>
+
+---
+
+## Trigger Types
+
+RBOS provides five trigger types to cover both human-initiated and fully automated scenarios.
+
+| Trigger | Description | Example use case |
+|---|---|---|
+| **Manual** | A user explicitly clicks **Run** on the workflow | One-off document generation or on-demand report creation |
+| **Scheduled** | Fires on a cron-style time expression you define | Weekly summary report every Monday at 9 AM |
+| **Document Added** | Fires when a new file or document arrives in a specified collection | Route an uploaded contract for legal review |
+| **Status Changed** | Fires when a project or task status transitions to a specified value | Notify stakeholders when a project moves to On Hold |
+| **Agent Completion** | Fires when an AI agent finishes its assigned task | Chain the agent's output into the next processing step |
+
+---
+
+## Workflow Templates
+
+RBOS ships with a set of ready-made workflow templates for the most common enterprise patterns. Templates pre-fill the trigger, conditions, and actions so you only need to customize names, targets, and recipients.
+
+| Template | What it automates |
+|---|---|
+| **Document Review** | Routes newly added documents to a designated reviewer with a notification and a review task |
+| **Approval Chain** | Sends a document or task through a sequential list of approvers; advances only when each approves |
+| **Weekly Report** | Aggregates project activity on a schedule and creates a summary document in a reports collection |
+| **Onboarding Checklist** | Creates a standard set of tasks and sends welcome notifications when a new member joins a project |
+
+To apply a template:
+
+1. Go to the **Workflows** tab and click **+ New Workflow**.
+2. Click **Start from Template** instead of building from scratch.
+3. Select the template that fits your use case and click **Use Template**.
+4. Customize the pre-filled fields and click **Save & Activate**.
+
+<Warning>
+  Workflows that include a **Call Webhook** action require the destination URL to be a publicly accessible **HTTPS** endpoint. Plain HTTP URLs and private network addresses (such as `localhost` or internal IPs) will cause the action to fail. Ensure your receiving server has a valid TLS certificate before activating the workflow.
+</Warning>

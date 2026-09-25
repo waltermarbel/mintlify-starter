@@ -1,0 +1,115 @@
+---
+title: "RBOS Glossary: Key Terms and Definitions"
+sidebarTitle: "Glossary"
+description: "A reference guide to the core terms, concepts, and components you will encounter while working with RBOS."
+---
+
+This glossary defines the key terms and components you will encounter throughout RBOS. Terms are organized alphabetically so you can quickly find what you are looking for and build a clear mental model of how the platform works.
+
+## @-reference
+
+An inline mention of another document, project, or member created by typing the `@` symbol followed by the item's name. @-references create live links that update automatically if the referenced item is renamed or moved.
+
+## Action
+
+A step executed within a workflow — such as creating a document, notifying a member, assigning a task, calling a webhook, or running an AI agent. A single workflow can chain multiple actions together in sequence.
+
+## AI Agent
+
+A configurable AI assistant scoped to specific knowledge and tools within your workspace. Agents run on RBOS's managed LLM infrastructure and can be given memory, a defined scope, and a set of tools to carry out tasks autonomously or on demand.
+
+<Tip>
+  You can chain agents together using Workflow actions — set one agent's completion as a Trigger to automatically start a second agent.
+</Tip>
+
+## Audit Log
+
+An immutable, time-stamped record of every action taken within a workspace, including document changes, permission updates, agent runs, and workflow executions. Audit logs are available to workspace Owners and Admins and are read-only.
+
+## Collection
+
+A folder-like container used to group related documents within a project or at the root of your Knowledge Base. Collections help you keep content organized and can be used to control agent scope and access permissions.
+
+## Data Retention Policy
+
+A workspace-level configuration that automatically archives or permanently deletes documents after a specified time period. Data retention policies help you stay compliant with internal governance requirements and external regulations.
+
+## Document
+
+Any content item stored in RBOS — including uploaded files, created notes, wiki pages, structured records, and synced external content. Documents live inside collections and can be versioned, tagged, @-referenced, and shared with team members.
+
+## Integration
+
+A connection between RBOS and an external tool such as Slack, Jira, Google Drive, GitHub, Notion, or Confluence. Integrations allow you to sync content into your Knowledge Base and trigger external actions from workflows.
+
+## Knowledge Base
+
+The centralized, searchable repository of all content in a workspace — encompassing documents, wikis, structured records, and assets. The Knowledge Base powers both semantic search and agent context retrieval.
+
+<Tip>
+  Everything you add to RBOS — whether synced, uploaded, or created manually — lives in the Knowledge Base and becomes immediately searchable by you and your agents.
+</Tip>
+
+## Memory
+
+Persistent facts and context that an AI agent retains across sessions. Memory is separate from conversation history and allows an agent to recall preferences, prior decisions, or ongoing context without requiring you to repeat yourself each time.
+
+## Project
+
+A scoped container that organizes goals, tasks, documents, workflows, and team members around a shared objective. Projects sit within a workspace and can have their own member roles and permissions, independent of workspace-level settings.
+
+## Role
+
+A permission set that controls what a member can see and do. Workspace roles — **Owner**, **Admin**, **Editor**, and **Viewer** — apply across the entire workspace. Project roles — **Owner**, **Editor**, and **Viewer** — apply within a specific project and can override workspace defaults.
+
+## Sandbox
+
+A safe, isolated test environment where you can run agents and workflows without affecting any production data. Changes made in the Sandbox are completely separate from your live workspace.
+
+<Note>
+  Always test agents and workflows in the Sandbox before deploying them to production. This prevents unintended document creation, notifications, or data modifications.
+</Note>
+
+## Scope
+
+The specific projects and collections that an AI agent is permitted to read from and write to. Defining a tight scope limits an agent's reach and reduces the risk of unintended data access or modification.
+
+## Semantic Search
+
+An AI-powered search capability that finds conceptually related content across your Knowledge Base, not just documents containing exact keyword matches. Semantic search understands the intent and meaning behind your query.
+
+<Note>
+  Unlike keyword search, semantic search understands intent and context — so searching for "budget approval process" can surface documents that discuss "financial sign-off procedures" even if they share no exact words.
+</Note>
+
+## SSO
+
+Single Sign-On — a centralized authentication method that lets your team log in to RBOS using your organization's existing identity provider. RBOS supports SAML 2.0 and OIDC, both available on the Enterprise plan and configured from Workspace Settings → Security → SSO.
+
+## Tag
+
+A label applied to a document or project for filtering and discoverability. Tags are free-form and can be created on the fly; they appear as filterable facets in search and collection views.
+
+## Tool
+
+A capability granted to an AI agent that extends what it can do. Available tools include KB Search, Document Creation, Workflow Trigger, Slack Notification, Jira Issue creation, and Webhook Call. You assign tools to an agent when configuring it.
+
+## Trigger
+
+The event that starts a workflow. Triggers can be **Manual** (a member clicks Run), **Scheduled** (a cron-style time schedule), or **Event-based** (a document is added, a status changes, or an agent completes its run).
+
+## Version History
+
+Automatically saved snapshots of every document, captured whenever a significant change is made. You can access version history from the document menu to view, compare, or restore any previous state of a document.
+
+## Webhook
+
+An HTTPS endpoint that RBOS — or an agent — calls with a JSON payload when a specified event occurs. Webhooks allow you to push real-time data from RBOS into external systems that are not covered by a native integration.
+
+## Workflow
+
+An automated or manual sequence of steps composed of a Trigger, optional Conditions, and one or more Actions. Workflows let you codify repeatable processes so they run consistently without manual intervention.
+
+## Workspace
+
+The top-level container for your organization in RBOS. All members, projects, documents, agents, and settings live within a workspace. A single account can belong to — or manage — multiple workspaces, making it easy to separate clients, business units, or environments.

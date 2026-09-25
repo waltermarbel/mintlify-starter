@@ -1,47 +1,87 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with RBOS in 5 Steps"
+sidebarTitle: "Quickstart"
+description: "Set up your RBOS workspace, create your first project, upload documents, and launch an AI agent in under 10 minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+This guide walks you through everything you need to go from a blank slate to a working RBOS environment. By the end, you'll have a live workspace with a project, documents loaded into your knowledge base, and an AI agent ready to answer questions against your content.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+<Note>
+  Trial workspaces include up to 5 members, 1 GB of document storage, and 3 AI agent deployments. Upgrade your plan at any time from **Settings → Billing** to remove these limits.
+</Note>
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Create Your Workspace">
+    Navigate to [app.rbos.io](https://app.rbos.io) and click **Sign Up**. Enter your work email address and create a password, or continue with Google or Microsoft SSO.
 
-    ```bash
-    npm install your-package
-    ```
+    Once authenticated, you'll be prompted to create your first workspace:
+
+    - **Workspace name** — Use your company or team name (e.g., `Acme Corp` or `Product Team`). This appears across the UI and in shared links.
+    - **Plan** — Select a plan based on your team size and storage needs. You can start with the free trial and upgrade later.
+    - **Slug** — RBOS auto-generates a URL slug from your workspace name (e.g., `acme-corp.rbos.io`). You can customize this before confirming.
+
+    Click **Create Workspace** to continue.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Invite Your Team">
+    A workspace is most powerful with your whole team inside it. Navigate to **Settings → Members** and click **Invite Members**.
 
-    ```bash
-    your-cli init
-    ```
+    Enter one or more email addresses and assign each invitee a role before sending:
+
+    - **Admin** — Full access to workspace settings, billing, integrations, and all content.
+    - **Editor** — Can create, edit, and delete projects, documents, and workflows, but cannot change workspace settings.
+    - **Viewer** — Read-only access to all content they've been granted visibility into.
+
+    RBOS sends each invitee an email with a join link valid for 72 hours. You can resend or revoke invitations at any time from the **Members** panel.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Create Your First Project">
+    Projects are the primary way RBOS organizes work. Think of a project as a scoped container that holds tasks, documents, workflows, and the team members responsible for them — all oriented around a single goal.
 
-    ```bash
-    your-cli start
-    ```
+    From your workspace home, click **+ New Project** in the left sidebar. Fill in the project details:
+
+    - **Name** — A clear, descriptive title (e.g., `Q3 Product Launch` or `SOC 2 Compliance`).
+    - **Description** — A brief summary of the project's purpose and scope.
+    - **Tags** — Add tags to make the project discoverable via search and filters.
+
+    Click **Create Project**. Your new project opens immediately, ready for documents and team members.
+  </Step>
+  <Step title="Add Documents">
+    With your project open, click the **Documents** tab and start populating your knowledge base.
+
+    You have two options:
+
+    - **Drag and drop** — Drag files directly from your desktop into the Documents panel. RBOS accepts PDF, DOCX, Markdown, plain text, and a range of other formats.
+    - **Import** — Click the **Import** button to pull in content from a connected source. Supported integrations include Google Drive, Notion, GitHub, and Confluence. If you haven't connected an integration yet, go to **Settings → Integrations** first.
+
+    All uploaded documents are automatically indexed for full-text and semantic search the moment they're added. Large files may take a few moments to finish indexing.
+  </Step>
+  <Step title="Launch Your First AI Agent">
+    Navigate to the **Agents** section in the left sidebar and click **+ New Agent**.
+
+    RBOS offers several agent templates to get you started quickly:
+
+    - **Knowledge Assistant** — Answers questions by searching across documents in your knowledge base.
+    - **Project Summarizer** — Generates status summaries and action-item digests from project content.
+    - **Workflow Runner** — Monitors triggers and executes workflow steps on your behalf.
+
+    Select the **Knowledge Assistant** template and configure it:
+
+    1. Give your agent a name (e.g., `Q3 Launch Assistant`).
+    2. Under **Scope**, select the project or knowledge base folders the agent is allowed to access.
+    3. Review the default permissions and adjust what actions the agent can take (read-only vs. read/write).
+    4. Click **Deploy Agent**.
+
+    Your agent is now live. Open it and ask a question — it will search your documents and respond with cited answers.
   </Step>
 </Steps>
 
 <Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
-
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+  Use the quick search shortcut **Cmd+K** (macOS) or **Ctrl+K** (Windows/Linux) from anywhere in RBOS to instantly jump to any project, document, agent, or settings page. It's the fastest way to navigate once your workspace starts to grow.
 </Tip>
+
+## What's Next?
+
+Now that your workspace is live, explore the rest of RBOS at your own pace:
+
+- Read the [Core Concepts](core-concepts) page to understand the full data model.
+- Learn how to build multi-step [Workflows](guides/projects) for approvals and automation.
+- Review [Governance](governance/overview) settings to lock down access and enable audit logging.
